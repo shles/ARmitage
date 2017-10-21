@@ -173,7 +173,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
                     }
                     
                     //                     Perform a hit test on the ARFrame to find a surface
-                    let hitTestResults = frame.hitTest(center, types: [.estimatedHorizontalPlane/*, .estimatedHorizontalPlane, .existingPlane, .existingPlaneUsingExtent*/] )
+                    let hitTestResults = frame.hitTest(center, types: [.featurePoint/*, .estimatedHorizontalPlane, .existingPlane, .existingPlaneUsingExtent*/] )
                     
                     // If we have a result, process it
                     //                    print(hitTestResults.map{ $0.distance })
@@ -189,8 +189,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
                             // Combine both transformation matrices
                             let finalTransform = simd_mul(hitTestResult.worldTransform, rotate)
                             node.transform = SCNMatrix4(finalTransform)
+//                            node.scale = SCNVector3(
+//                                hitTestResult.distance/rect.width,
+//                                hitTestResult.distance/rect.height,
+//                                1
+//                            )
 //                            node.transform.m22 = Float(rect.width)
 //                            node.transform.m33 = Float(rect.height)
+//                            node.sc
                             
 //                            node.eulerAngles = SCNVector3(0,
 //                                                          hitTestResult.worldTransform[3][1],
@@ -236,7 +242,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
         if self.detectedDataAnchor?.identifier == anchor.identifier {
             
             // Create a 3D Cup to display
-            guard let virtualObjectScene = SCNScene(named: "cup.scn", inDirectory: "art.scnassets/cup") else {
+            guard let virtualObjectScene = SCNScene(named: "overlay.scn", inDirectory: "art.scnassets") else {
                 print("failed to open model")
                 return nil
             }
@@ -246,7 +252,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
             for child in virtualObjectScene.rootNode.childNodes {
                 child.geometry?.firstMaterial?.lightingModel = .physicallyBased
                 child.movabilityHint = .fixed
-                
                 wrapperNode.addChildNode(child)
             }
             
