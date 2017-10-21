@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="ARKit2DTracking" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="VKHackathon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xqD-FG-APj"/>
                         <viewControllerLayoutGuide type="bottom" id="4qX-WW-RM4"/>
@@ -23,10 +23,20 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FWD-gC-hwi">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </arscnView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RHI-Ne-siS">
+                                <rect key="frame" x="96.5" y="40" width="182" height="29"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                    <segment title="Third"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="RHI-Ne-siS" firstAttribute="centerX" secondItem="oZ7-kW-Tdi" secondAttribute="centerX" id="7Qr-4D-6H6"/>
                             <constraint firstAttribute="trailing" secondItem="FWD-gC-hwi" secondAttribute="trailing" id="KPQ-R8-nYv"/>
+                            <constraint firstItem="RHI-Ne-siS" firstAttribute="top" secondItem="xqD-FG-APj" secondAttribute="bottom" constant="20" id="Wya-pR-wxC"/>
                             <constraint firstItem="4qX-WW-RM4" firstAttribute="top" secondItem="FWD-gC-hwi" secondAttribute="bottom" id="ZFd-54-Qp4"/>
                             <constraint firstItem="FWD-gC-hwi" firstAttribute="top" secondItem="xqD-FG-APj" secondAttribute="bottom" id="ZtV-lb-ZQB"/>
                             <constraint firstItem="FWD-gC-hwi" firstAttribute="leading" secondItem="oZ7-kW-Tdi" secondAttribute="leading" id="rcX-9B-ees"/>
@@ -34,6 +44,7 @@
                     </view>
                     <connections>
                         <outlet property="sceneView" destination="FWD-gC-hwi" id="QGC-WQ-6FZ"/>
+                        <outlet property="segmentedControl" destination="RHI-Ne-siS" id="FWN-wR-QTm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

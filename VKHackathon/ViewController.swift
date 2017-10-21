@@ -44,7 +44,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
     
     let redView = UIView()
     
-    let tapGR = UILongPressGestureRecognizer()
+    let tapGR = UITapGestureRecognizer()
+    let pressGR = UILongPressGestureRecognizer()
+    
+    @IBOutlet var segmentedControl: UISegmentedControl!
     
     private let disposeBag = DisposeBag()
     
@@ -52,6 +55,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let cupSceneChildNodes = SCNScene(named: "cup.scn", inDirectory: "art.scnassets/cup")!.rootNode.childNodes
+        let overlayChildNodes = SCNScene(named: "overlay.scn", inDirectory: "art.scnassets")!.rootNode.childNodes
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -72,16 +78,38 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
         
         view.isUserInteractionEnabled = true
         sceneView.isUserInteractionEnabled = true
+        sceneView.addGestureRecognizer(pressGR)
         sceneView.addGestureRecognizer(tapGR)
         
-        tapGR.delegate = self
-        tapGR.rx.event.map{ gr -> Bool in
+        pressGR.delegate = self
+        pressGR.rx.event.map{ gr -> Bool in
             switch gr.state {
             case .began, .changed: return false
             case .ended: return true
             default: return true
             }
             }.bind(to: holdRelay).disposed(by: disposeBag)
+        
+        view.addSubview(segmentedControl)
+        segmentedControl.rx.value.subscribe(onNext: { value in
+            guard let anchor = self.detectedDataAnchor else { return }
+            let node = self.sceneView.node(for: anchor)
+            node?.childNodes.forEach{ $0.removeFromParentNode() }
+            
+            let scene: [SCNNode]
+            switch value {
+            case 0: scene = overlayChildNodes
+            case 1: scene = cupSceneChildNodes
+            default: scene = []
+            }
+            
+            for child in scene {
+                child.geometry?.firstMaterial?.lightingModel = .physicallyBased
+                child.movabilityHint = .fixed
+                node?.addChildNode(child)
+            }
+
+        }).disposed(by: disposeBag)
         
     }
     
