@@ -94,6 +94,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
         // Enable horizontal plane detection
         configuration.planeDetection = .horizontal
         
+        
         // Run the view's session
         sceneView.session.run(configuration)
     }
@@ -181,8 +182,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
                         // If we already have an anchor, update the position of the attached node
                         if let detectedDataAnchor = self.detectedDataAnchor,
                             let node = self.sceneView.node(for: detectedDataAnchor) {
-                            node.transform = SCNMatrix4(hitTestResult.worldTransform)
                             
+                            let rotate = simd_float4x4(SCNMatrix4MakeRotation(self.sceneView.session.currentFrame!.camera.eulerAngles.y, 0, 1, 0))
+                            
+                            // Combine both transformation matrices
+//                            let finalTransform = simd_mul(hitTestResult.worldTransform, rotate)
+                            node.transform = SCNMatrix4(hitTestResult.worldTransform)
+                            node.transform.m22 = Float(rect.width)
+                            node.transform.m33 = Float(rect.height)
+                            
+//                            node.eulerAngles = SCNVector3(0,
+//                                                          hitTestResult.worldTransform[3][1],
+//                                                          0)
                         } else {
                             // Create an anchor. The node will be created in delegate methods
                             self.detectedDataAnchor = ARAnchor(transform: hitTestResult.worldTransform)
@@ -224,7 +235,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
         if self.detectedDataAnchor?.identifier == anchor.identifier {
             
             // Create a 3D Cup to display
-            guard let virtualObjectScene = SCNScene(named: "cup.scn", inDirectory: "Models.scnassets/cup") else {
+            guard let virtualObjectScene = SCNScene(named: "cube.scn", inDirectory: "art.scnassets") else {
+                print("failed to open model")
                 return nil
             }
             
