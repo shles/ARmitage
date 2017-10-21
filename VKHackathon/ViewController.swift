@@ -63,10 +63,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
         sceneView.showsStatistics = true
         
         sceneView.addSubview(redView)
-        //        sceneView.addSubview(topLeftView)
-        //        sceneView.addSubview(topRightView)
-        //        sceneView.addSubview(bottomLeftView)
-        //        sceneView.addSubview(bottomRightView)
+        sceneView.addSubview(topLeftView)
+        sceneView.addSubview(topRightView)
+        sceneView.addSubview(bottomLeftView)
+        sceneView.addSubview(bottomRightView)
         redView.backgroundColor = .red
         redView.frame.size = .init(width: 10, height: 10)
         
@@ -179,6 +179,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
                     //                    print(hitTestResults.map{ $0.distance })
                     if let hitTestResult = hitTestResults.first {
                         
+                        hitTestResult.worldTransform
                         // If we already have an anchor, update the position of the attached node
                         if let detectedDataAnchor = self.detectedDataAnchor,
                             let node = self.sceneView.node(for: detectedDataAnchor) {
@@ -186,10 +187,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
                             let rotate = simd_float4x4(SCNMatrix4MakeRotation(self.sceneView.session.currentFrame!.camera.eulerAngles.y, 0, 1, 0))
                             
                             // Combine both transformation matrices
-//                            let finalTransform = simd_mul(hitTestResult.worldTransform, rotate)
-                            node.transform = SCNMatrix4(hitTestResult.worldTransform)
-                            node.transform.m22 = Float(rect.width)
-                            node.transform.m33 = Float(rect.height)
+                            let finalTransform = simd_mul(hitTestResult.worldTransform, rotate)
+                            node.transform = SCNMatrix4(finalTransform)
+//                            node.transform.m22 = Float(rect.width)
+//                            node.transform.m33 = Float(rect.height)
                             
 //                            node.eulerAngles = SCNVector3(0,
 //                                                          hitTestResult.worldTransform[3][1],
@@ -235,7 +236,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
         if self.detectedDataAnchor?.identifier == anchor.identifier {
             
             // Create a 3D Cup to display
-            guard let virtualObjectScene = SCNScene(named: "cube.scn", inDirectory: "art.scnassets") else {
+            guard let virtualObjectScene = SCNScene(named: "cup.scn", inDirectory: "art.scnassets/cup") else {
                 print("failed to open model")
                 return nil
             }
