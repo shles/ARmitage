@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="ARKit2DTracking" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xqD-FG-APj"/>
+                        <viewControllerLayoutGuide type="bottom" id="4qX-WW-RM4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oZ7-kW-Tdi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FWD-gC-hwi">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </arscnView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="FWD-gC-hwi" secondAttribute="trailing" id="KPQ-R8-nYv"/>
+                            <constraint firstItem="4qX-WW-RM4" firstAttribute="top" secondItem="FWD-gC-hwi" secondAttribute="bottom" id="ZFd-54-Qp4"/>
+                            <constraint firstItem="FWD-gC-hwi" firstAttribute="top" secondItem="xqD-FG-APj" secondAttribute="bottom" id="ZtV-lb-ZQB"/>
+                            <constraint firstItem="FWD-gC-hwi" firstAttribute="leading" secondItem="oZ7-kW-Tdi" secondAttribute="leading" id="rcX-9B-ees"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="sceneView" destination="FWD-gC-hwi" id="QGC-WQ-6FZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="88.799999999999997" y="88.605697151424295"/>
+        </scene>
+    </scenes>
+</document>

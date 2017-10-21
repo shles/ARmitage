@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  AppDelegate.swift
 //  VKHackathon
 //
 //  Created by Timofey on 10/20/17.
@@ -9,10 +9,46 @@
 import UIKit
 import SceneKit
 import ARKit
+import Vision
+import RxSwift
+import RxCocoa
 
-class ViewController: UIViewController, ARSCNViewDelegate {
-
+class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UIGestureRecognizerDelegate {
+    
+    class RedView: UIView {
+        
+        init() {
+            super.init(frame: .init(x: 0, y: 0, width: 10, height: 10))
+            backgroundColor = .red
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+    }
+    
+    // MARK: - Properties
+    
     @IBOutlet var sceneView: ARSCNView!
+    
+    var detectedDataAnchor: ARAnchor?
+    var processing = false
+    
+    // MARK: - View Setup
+    
+    let topLeftView = RedView()
+    let bottomLeftView = RedView()
+    let topRightView = RedView()
+    let bottomRightView = RedView()
+    
+    let redView = UIView()
+    
+    let tapGR = UILongPressGestureRecognizer()
+    
+    private let disposeBag = DisposeBag()
+    
+    private let holdRelay = Variable(true)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,14 +56,33 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Set the view's delegate
         sceneView.delegate = self
         
+        // Set the session's delegate
+        sceneView.session.delegate = self
+        
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        sceneView.addSubview(redView)
+        //        sceneView.addSubview(topLeftView)
+        //        sceneView.addSubview(topRightView)
+        //        sceneView.addSubview(bottomLeftView)
+        //        sceneView.addSubview(bottomRightView)
+        redView.backgroundColor = .red
+        redView.frame.size = .init(width: 10, height: 10)
         
-        // Set the scene to the view
-        sceneView.scene = scene
+        view.isUserInteractionEnabled = true
+        sceneView.isUserInteractionEnabled = true
+        sceneView.addGestureRecognizer(tapGR)
+        
+        tapGR.delegate = self
+        tapGR.rx.event.map{ gr -> Bool in
+            switch gr.state {
+            case .began, .changed: return false
+            case .ended: return true
+            default: return true
+            }
+            }.bind(to: holdRelay).disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,7 +90,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-
+        
+        // Enable horizontal plane detection
+        configuration.planeDetection = .horizontal
+        
         // Run the view's session
         sceneView.session.run(configuration)
     }
@@ -47,34 +105,171 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
+    
+    // MARK: - ARSessionDelegate
+    
+    public func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        
+        // Only run one Vision request at a time
+        if self.processing || holdRelay.value {
+            return
+        }
+        
+        self.processing = true
+        
+        // Create a Barcode Detection Request
+        let request = VNDetectRectanglesRequest { (request, error) in
+            
+            // Get the first result out of the results, if there are any
+            let results = request.results?.flatMap{ $0 as? VNRectangleObservation }
+            if let result = results?.first(where: { observation in
+                //                observation.boundingBox.contains(
+                //                    CGRect(
+                //                        x: 0.3,
+                //                        y: 0.3,
+                //                        width: 0.4,
+                //                        height: 0.4
+                //                    )
+                //                ) && CGRect(
+                //                    x: 0.1,
+                //                    y: 0.1,
+                //                    width: 0.8,
+                //                    height: 0.8
+                //                ).contains(observation.boundingBox)
+                return true
+            }) {
+                
+                // Get the bounding box for the bar code and find the center
+                var rect = result.boundingBox
+                
+                // Flip coordinates
+                rect = rect.applying(CGAffineTransform(scaleX: 1, y: -1))
+                rect = rect.applying(CGAffineTransform(translationX: 0, y: 1))
+                
+                // Get center
+                let center = CGPoint(x: rect.midX, y: rect.midY)
+                // Go back to the main thread
+                DispatchQueue.main.async { [unowned self] in
+                    
+                    [
+                        (self.redView, center),
+                        (self.bottomLeftView, center.applying(
+                            CGAffineTransform(translationX: -rect.width/2, y: -rect.height/2)
+                            )
+                        ),
+                        (self.bottomRightView, center.applying(
+                            CGAffineTransform(translationX: rect.width/2, y: -rect.height/2)
+                        )),
+                        (self.topLeftView, center.applying(
+                            CGAffineTransform(translationX: -rect.width/2, y: rect.height/2)
+                        )),
+                        (self.topRightView, center.applying(
+                            CGAffineTransform(translationX: rect.width/2, y: rect.height/2)
+                        ))
+                        ].forEach{ view, point in
+                            view.frame.origin.x = self.view.frame.width * point.x
+                            view.frame.origin.y = self.view.frame.height * point.y
+                    }
+                    
+                    //                     Perform a hit test on the ARFrame to find a surface
+                    let hitTestResults = frame.hitTest(center, types: [.estimatedHorizontalPlane/*, .estimatedHorizontalPlane, .existingPlane, .existingPlaneUsingExtent*/] )
+                    
+                    // If we have a result, process it
+                    //                    print(hitTestResults.map{ $0.distance })
+                    if let hitTestResult = hitTestResults.first {
+                        
+                        // If we already have an anchor, update the position of the attached node
+                        if let detectedDataAnchor = self.detectedDataAnchor,
+                            let node = self.sceneView.node(for: detectedDataAnchor) {
+                            node.transform = SCNMatrix4(hitTestResult.worldTransform)
+                            
+                        } else {
+                            // Create an anchor. The node will be created in delegate methods
+                            self.detectedDataAnchor = ARAnchor(transform: hitTestResult.worldTransform)
+                            self.sceneView.session.add(anchor: self.detectedDataAnchor!)
+                        }
+                    }
+                    
+                    // Set processing flag off
+                    self.processing = false
+                }
+                
+            } else {
+                // Set processing flag off
+                self.processing = false
+            }
+        }
+        
+        //         Process the request in the background
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                // Create a request handler using the captured image from the ARFrame
+                let imageRequestHandler = VNImageRequestHandler(
+                    cvPixelBuffer: frame.capturedImage,
+                    options: [:]
+                )
+                // Process the request
+                try imageRequestHandler.perform([request])
+            } catch {
+                
+            }
+        }
     }
-
+    
     // MARK: - ARSCNViewDelegate
     
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
-     
-        return node
-    }
-*/
-    
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
         
+        // If this is our anchor, create a node
+        if self.detectedDataAnchor?.identifier == anchor.identifier {
+            
+            // Create a 3D Cup to display
+            guard let virtualObjectScene = SCNScene(named: "cup.scn", inDirectory: "Models.scnassets/cup") else {
+                return nil
+            }
+            
+            let wrapperNode = SCNNode()
+            
+            for child in virtualObjectScene.rootNode.childNodes {
+                child.geometry?.firstMaterial?.lightingModel = .physicallyBased
+                child.movabilityHint = .fixed
+                
+                wrapperNode.addChildNode(child)
+            }
+            
+            // Set its position based off the anchor
+            wrapperNode.transform = SCNMatrix4(anchor.transform)
+            
+            return wrapperNode
+        }
+        
+        return nil
     }
     
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
     
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return true
     }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive press: UIPress) -> Bool {
+        return true
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
 }
+

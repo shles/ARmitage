@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		658001DE82F4FA4E203922B3 /* Pods_VKHackathonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0A23D22F3336FB95128C36C /* Pods_VKHackathonTests.framework */; };
+		9694B5B91F9AC6AB008DE09B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9694B5B81F9AC6AB008DE09B /* Main.storyboard */; };
 		96BAB8691F9A2C9F00D2B3CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BAB8681F9A2C9F00D2B3CC /* AppDelegate.swift */; };
 		96BAB86B1F9A2C9F00D2B3CC /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 96BAB86A1F9A2C9F00D2B3CC /* art.scnassets */; };
 		96BAB86D1F9A2C9F00D2B3CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BAB86C1F9A2C9F00D2B3CC /* ViewController.swift */; };
-		96BAB8701F9A2C9F00D2B3CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96BAB86E1F9A2C9F00D2B3CC /* Main.storyboard */; };
 		96BAB8721F9A2C9F00D2B3CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96BAB8711F9A2C9F00D2B3CC /* Assets.xcassets */; };
 		96BAB8751F9A2C9F00D2B3CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96BAB8731F9A2C9F00D2B3CC /* LaunchScreen.storyboard */; };
 		96BAB8801F9A2C9F00D2B3CC /* VKHackathonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BAB87F1F9A2C9F00D2B3CC /* VKHackathonTests.swift */; };
+		FC106F7145675F286F19876F /* Pods_VKHackathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B22692E88E39BF278DE5BC /* Pods_VKHackathon.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,17 +29,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		248FF3CD38C73E041C5AF8B6 /* Pods-VKHackathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKHackathon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VKHackathon/Pods-VKHackathon.debug.xcconfig"; sourceTree = "<group>"; };
+		9694B5B81F9AC6AB008DE09B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		96BAB8651F9A2C9F00D2B3CC /* VKHackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKHackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96BAB8681F9A2C9F00D2B3CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96BAB86A1F9A2C9F00D2B3CC /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		96BAB86C1F9A2C9F00D2B3CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		96BAB86F1F9A2C9F00D2B3CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		96BAB8711F9A2C9F00D2B3CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96BAB8741F9A2C9F00D2B3CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96BAB8761F9A2C9F00D2B3CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96BAB87B1F9A2C9F00D2B3CC /* VKHackathonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VKHackathonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96BAB87F1F9A2C9F00D2B3CC /* VKHackathonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKHackathonTests.swift; sourceTree = "<group>"; };
 		96BAB8811F9A2C9F00D2B3CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9ED8E1AFD33256C9EA6D2B53 /* Pods-VKHackathonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKHackathonTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VKHackathonTests/Pods-VKHackathonTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B40E103FBE41BFE044924555 /* Pods-VKHackathon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKHackathon.release.xcconfig"; path = "Pods/Target Support Files/Pods-VKHackathon/Pods-VKHackathon.release.xcconfig"; sourceTree = "<group>"; };
+		C8098C549C8AA4E2832F8B28 /* Pods-VKHackathonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKHackathonTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VKHackathonTests/Pods-VKHackathonTests.release.xcconfig"; sourceTree = "<group>"; };
+		F0A23D22F3336FB95128C36C /* Pods_VKHackathonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKHackathonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4B22692E88E39BF278DE5BC /* Pods_VKHackathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKHackathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC106F7145675F286F19876F /* Pods_VKHackathon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,18 +61,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				658001DE82F4FA4E203922B3 /* Pods_VKHackathonTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B9C7227922F11B059243763 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4B22692E88E39BF278DE5BC /* Pods_VKHackathon.framework */,
+				F0A23D22F3336FB95128C36C /* Pods_VKHackathonTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		96BAB85C1F9A2C9F00D2B3CC = {
 			isa = PBXGroup;
 			children = (
 				96BAB8671F9A2C9F00D2B3CC /* VKHackathon */,
 				96BAB87E1F9A2C9F00D2B3CC /* VKHackathonTests */,
 				96BAB8661F9A2C9F00D2B3CC /* Products */,
+				F5B2E293A7B6C384C002E120 /* Pods */,
+				0B9C7227922F11B059243763 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,7 +103,7 @@
 				96BAB8681F9A2C9F00D2B3CC /* AppDelegate.swift */,
 				96BAB86A1F9A2C9F00D2B3CC /* art.scnassets */,
 				96BAB86C1F9A2C9F00D2B3CC /* ViewController.swift */,
-				96BAB86E1F9A2C9F00D2B3CC /* Main.storyboard */,
+				9694B5B81F9AC6AB008DE09B /* Main.storyboard */,
 				96BAB8711F9A2C9F00D2B3CC /* Assets.xcassets */,
 				96BAB8731F9A2C9F00D2B3CC /* LaunchScreen.storyboard */,
 				96BAB8761F9A2C9F00D2B3CC /* Info.plist */,
@@ -99,6 +120,17 @@
 			path = VKHackathonTests;
 			sourceTree = "<group>";
 		};
+		F5B2E293A7B6C384C002E120 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				248FF3CD38C73E041C5AF8B6 /* Pods-VKHackathon.debug.xcconfig */,
+				B40E103FBE41BFE044924555 /* Pods-VKHackathon.release.xcconfig */,
+				9ED8E1AFD33256C9EA6D2B53 /* Pods-VKHackathonTests.debug.xcconfig */,
+				C8098C549C8AA4E2832F8B28 /* Pods-VKHackathonTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +138,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96BAB8841F9A2C9F00D2B3CC /* Build configuration list for PBXNativeTarget "VKHackathon" */;
 			buildPhases = (
+				BA09346A3309EA64C873ED0E /* [CP] Check Pods Manifest.lock */,
 				96BAB8611F9A2C9F00D2B3CC /* Sources */,
 				96BAB8621F9A2C9F00D2B3CC /* Frameworks */,
 				96BAB8631F9A2C9F00D2B3CC /* Resources */,
+				0D0F6825E6C5A4C9FB8D3D11 /* [CP] Embed Pods Frameworks */,
+				09DBE487A4C14B708B2AABC1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -123,9 +158,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96BAB8871F9A2C9F00D2B3CC /* Build configuration list for PBXNativeTarget "VKHackathonTests" */;
 			buildPhases = (
+				6D62E53EE96E84267B248339 /* [CP] Check Pods Manifest.lock */,
 				96BAB8771F9A2C9F00D2B3CC /* Sources */,
 				96BAB8781F9A2C9F00D2B3CC /* Frameworks */,
 				96BAB8791F9A2C9F00D2B3CC /* Resources */,
+				6F4362064C577272F916F09B /* [CP] Embed Pods Frameworks */,
+				408A7343E26A099A856C2DAA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,6 +187,7 @@
 				TargetAttributes = {
 					96BAB8641F9A2C9F00D2B3CC = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					96BAB87A1F9A2C9F00D2B3CC = {
@@ -185,7 +224,7 @@
 				96BAB86B1F9A2C9F00D2B3CC /* art.scnassets in Resources */,
 				96BAB8751F9A2C9F00D2B3CC /* LaunchScreen.storyboard in Resources */,
 				96BAB8721F9A2C9F00D2B3CC /* Assets.xcassets in Resources */,
-				96BAB8701F9A2C9F00D2B3CC /* Main.storyboard in Resources */,
+				9694B5B91F9AC6AB008DE09B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +236,110 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09DBE487A4C14B708B2AABC1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VKHackathon/Pods-VKHackathon-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0D0F6825E6C5A4C9FB8D3D11 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-VKHackathon/Pods-VKHackathon-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VKHackathon/Pods-VKHackathon-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		408A7343E26A099A856C2DAA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VKHackathonTests/Pods-VKHackathonTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6D62E53EE96E84267B248339 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VKHackathonTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F4362064C577272F916F09B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VKHackathonTests/Pods-VKHackathonTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA09346A3309EA64C873ED0E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VKHackathon-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		96BAB8611F9A2C9F00D2B3CC /* Sources */ = {
@@ -227,14 +370,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		96BAB86E1F9A2C9F00D2B3CC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				96BAB86F1F9A2C9F00D2B3CC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		96BAB8731F9A2C9F00D2B3CC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -355,14 +490,18 @@
 		};
 		96BAB8851F9A2C9F00D2B3CC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 248FF3CD38C73E041C5AF8B6 /* Pods-VKHackathon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 262F459V52;
+				DEVELOPMENT_TEAM = W9HXCUL7KS;
 				INFOPLIST_FILE = VKHackathon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.NFO.VKHackathon;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Jufy.lalasale;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -370,14 +509,17 @@
 		};
 		96BAB8861F9A2C9F00D2B3CC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B40E103FBE41BFE044924555 /* Pods-VKHackathon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 262F459V52;
+				DEVELOPMENT_TEAM = W9HXCUL7KS;
 				INFOPLIST_FILE = VKHackathon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.NFO.VKHackathon;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Jufy.lalasale;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -385,6 +527,7 @@
 		};
 		96BAB8881F9A2C9F00D2B3CC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9ED8E1AFD33256C9EA6D2B53 /* Pods-VKHackathonTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -402,6 +545,7 @@
 		};
 		96BAB8891F9A2C9F00D2B3CC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8098C549C8AA4E2832F8B28 /* Pods-VKHackathonTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
