@@ -56,8 +56,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let cupSceneChildNodes = SCNScene(named: "cup.scn", inDirectory: "art.scnassets/cup")!.rootNode.childNodes
-        let overlayChildNodes = SCNScene(named: "overlay.scn", inDirectory: "art.scnassets")!.rootNode.childNodes
+        let detailsOverlay = SCNScene(named: "details_overlay.scn", inDirectory: "art.scnassets")!.rootNode.childNodes
+        let charactersOverlay = SCNScene(named: "characters_overlay.scn", inDirectory: "art.scnassets")!.rootNode.childNodes
+        let restorationOverlay = SCNScene(named: "restoration_overlay.scn", inDirectory: "art.scnassets")!.rootNode.childNodes
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -66,13 +67,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
         sceneView.session.delegate = self
         
         // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+        sceneView.showsStatistics = false
         
-        sceneView.addSubview(redView)
-        sceneView.addSubview(topLeftView)
-        sceneView.addSubview(topRightView)
-        sceneView.addSubview(bottomLeftView)
-        sceneView.addSubview(bottomRightView)
+//        sceneView.addSubview(redView)
+//        sceneView.addSubview(topLeftView)
+//        sceneView.addSubview(topRightView)
+//        sceneView.addSubview(bottomLeftView)
+//        sceneView.addSubview(bottomRightView)
         redView.backgroundColor = .red
         redView.frame.size = .init(width: 10, height: 10)
         
@@ -98,8 +99,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
             
             let scene: [SCNNode]
             switch value {
-            case 0: scene = overlayChildNodes
-            case 1: scene = cupSceneChildNodes
+            case 0: scene = charactersOverlay
+            case 1: scene = detailsOverlay
+            case 2: scene = restorationOverlay
             default: scene = []
             }
             
