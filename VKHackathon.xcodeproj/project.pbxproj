@@ -498,7 +498,7 @@
 				DEVELOPMENT_TEAM = W9HXCUL7KS;
 				INFOPLIST_FILE = VKHackathon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Jufy.lalasale;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Jufy.artyfy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -517,7 +517,7 @@
 				DEVELOPMENT_TEAM = W9HXCUL7KS;
 				INFOPLIST_FILE = VKHackathon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Jufy.lalasale;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Jufy.artyfy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 4.0;
